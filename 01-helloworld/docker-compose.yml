@@ -2,6 +2,7 @@ version: "3.3"
 services:
   app:
     build: .
+    image: alexandreroman/cn-helloworld
     restart: always
     environment:
       # Override the greeting message using an environment variable.
