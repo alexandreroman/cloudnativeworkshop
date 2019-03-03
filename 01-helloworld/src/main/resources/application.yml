@@ -1,0 +1,13 @@
+server:
+  # Use port defined as an environment variable to expose
+  # our web server. If no value is set, the default port
+  # 8080 is used.
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Expose health endpoint to monitor app readiness,
+        # at "/actuator/health"
+        include: "health"

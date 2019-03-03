@@ -1,0 +1,5 @@
+---
+applications:
+  - name: cn-helloworld
+    path: target/cn-helloworld.jar
+    random-route: true

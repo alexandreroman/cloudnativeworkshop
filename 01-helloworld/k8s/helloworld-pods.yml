@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cn-helloworld
+  namespace: cn-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cn-helloworld
+  template:
+    metadata:
+      labels:
+        app: cn-helloworld
+    spec:
+      containers:
+        # Deploy this app in a pod, using a Docker image.
+        - name: cn-helloworld
+          image: alexandreroman/cn-helloworld
+          env:
+            # Override the greeting message using an environment variable.
+            - name: MESSAGE
+              value: "Bonjour le monde!"
+          ports:
+            - containerPort: 8080
+          # Monitor this app using a liveness probe:
+          # the pod will be restarted if this endpoint returns an error.
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 90
+          # The pod is only made public when the app is "ready",
+          # probing this endpoint.
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 30
