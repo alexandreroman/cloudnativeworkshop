@@ -41,21 +41,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <!-- Uncomment this section to build a Docker image using jib-maven-plugin: -->
-            <!-- no Dockerfile is required in this case -->
-            <!--
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <configuration>
-                    <to>
-                        <image>alexandreroman/cn-helloworld</image>
-                    </to>
-                </configuration>
-            </plugin>
-            -->
         </plugins>
     </build>
 </project>
