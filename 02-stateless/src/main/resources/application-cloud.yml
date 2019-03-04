@@ -1,0 +1,7 @@
+# Enable profile "cloud" to activate this configuration file.
+spring:
+  redis:
+    # Set the host name where the Redis instance is running.
+    # We rely on the native DNS resolver service to locate
+    # the Redis instance.
+    host: redis

@@ -1,0 +1,8 @@
+---
+applications:
+  - name: cn-stateless
+    path: target/cn-stateless.jar
+    random-route: true
+    instances: 2
+    services:
+      - redis

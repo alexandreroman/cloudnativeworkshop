@@ -30,6 +30,9 @@ You may want to deploy the apps to your preferred cloud environment runtime:
 using Docker, run the image using docker-compose and deploy the app to
 Kubernetes or Cloud Foundry.
 
+[Stateless apps](02-stateless): see the benefits of making your app
+stateless, and solutions to help you achieving that goal.
+
 ## Contribute
 
 Contributions are always welcome!

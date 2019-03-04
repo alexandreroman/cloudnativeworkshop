@@ -1,0 +1,12 @@
+server:
+  port: ${PORT:8080}
+spring:
+  session:
+    # Use Redis to store HttpSession attributes.
+    store-type: redis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
