@@ -108,7 +108,7 @@ An other option to run this app is to use `docker-compose`:
 $ docker-compose -p cn-helloworld up
 ```
 
-The docker-compose configuration file defines how to run
+The `docker-compose` configuration file defines how to run
 this app:
 ```yaml
 version: "3.3"
@@ -215,9 +215,9 @@ Cloud Foundry:
 $ cf push
 ```
 
-You don't need to create a Docker image to run this with
+You don't need to create a Docker image to run this app with
 Cloud Foundry: the platform takes care of everything
-(including creating a container, setting up healthchecks)
+(including creating a container, setting up healthchecks).
 You only need to define this configuration file:
 ```yaml
 ---
