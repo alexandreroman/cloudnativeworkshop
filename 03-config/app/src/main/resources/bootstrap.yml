@@ -1,0 +1,11 @@
+spring:
+  application:
+    # Set application name in bootstrap configuration
+    # in order to fetch application configuration before
+    # Spring Boot actually starts.
+    name: cn-config
+  cloud:
+    config:
+      # Set URI to Spring Cloud Config Server.
+      uri: http://localhost:8888
+      fail-fast: true

@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: cn-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: app
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+        - name: cn-config
+          image: alexandreroman/cn-config
+          env:
+            # Set Spring Cloud Server URL.
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://sccs:8888
+            # Enable profile "prod".
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 90
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sccs
+  namespace: cn-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: sccs
+  template:
+    metadata:
+      labels:
+        role: sccs
+    spec:
+      containers:
+        - name: cn-config-server
+          image: alexandreroman/cn-config-server
+          ports:
+            - containerPort: 8888
+          livenessProbe:
+            httpGet:
+              port: 8888
+              path: /actuator/health
+            initialDelaySeconds: 90
+          readinessProbe:
+            httpGet:
+              port: 8888
+              path: /actuator/health
+            initialDelaySeconds: 30

@@ -20,7 +20,7 @@ attend this workshop:
    (but Eclipse is fine!)
 
 You may want to deploy the apps to your preferred cloud environment runtime:
- - Kubernetes: you need a 1.12+ K8s cluster
+ - Kubernetes: you need a 1.10+ K8s cluster
  - Cloud Foundry: use any provider, or easily
  [find one](http://trycloudfoundry.com)
 
@@ -32,6 +32,9 @@ Kubernetes or Cloud Foundry.
 
 [Stateless apps](02-stateless): see the benefits of making your app
 stateless, and solutions to help you achieving that goal.
+
+[External configuration](03-config): externalize configuration with Spring Cloud,
+so that you can work with the same application code in different environments.
 
 ## Contribute
 

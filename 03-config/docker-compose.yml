@@ -1,0 +1,47 @@
+version: "3.3"
+services:
+  app:
+    build: .
+    image: alexandreroman/cn-config
+    restart: always
+    environment:
+      # Set Spring Cloud Server URL.
+      - SPRING_CLOUD_CONFIG_URI=http://sccs:8888
+      # Enable profile "prod".
+      - SPRING_PROFILES_ACTIVE=prod
+    links:
+      - sccs
+    depends_on:
+      - sccs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=Host:app.config.cloudnative"
+      - "traefik.backend.healthcheck.path=/actuator/health"
+
+  # Access to external configuration using a Spring Cloud Config Server instance.
+  sccs:
+    build: Dockerfile-config-server
+    image: alexandreroman/cn-config-server
+    expose:
+      - "8888"
+    labels:
+      - "traefik.enable=false"
+
+  # Use Traefik as a reverse proxy for all app instances.
+  reverse_proxy:
+    image: "traefik:1.7-alpine"
+    # Set Traefik options:
+    #  - web:    enable Traefik console
+    #  - docker: listen to Docker events
+    command: --web --docker
+    labels:
+      - "traefik.enable=false"
+    ports:
+      # Public port.
+      - "8090:80"
+      # Console port.
+      - "9000:8080"
+    volumes:
+      # Give access to Docker events from Traefik.
+      - /var/run/docker.sock:/var/run/docker.sock
