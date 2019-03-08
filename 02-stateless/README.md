@@ -199,7 +199,7 @@ Three components are defined in this deployment:
  - a reverse proxy using [Traefik](https://traefik.io/) to redirect
    traffic to all app instances.
 
-Traefik is used here because `docker-compose` does not provides native
+Traefik is used here because `docker-compose` does not provide native
 support for dynamically load balancing traffic across all app instances.
 You could use a tool like `nginx` to load balance traffic, but then
 you would need to update the configuration each time the number of
